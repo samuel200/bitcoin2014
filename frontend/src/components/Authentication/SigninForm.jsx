@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import $ from 'jquery';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import domainName from '../../domainName';
 
 export default function SigninForm({ authenticated, setAuthenticationToken, setAuthenticated }) {
     const [ message, setMessage ] = useState("");
@@ -42,7 +43,7 @@ export default function SigninForm({ authenticated, setAuthenticationToken, setA
         e.preventDefault();
         setLoading(true);
         if(checkIfReady()){
-            axios.post("http://127.0.0.1:8000/login/", {
+            axios.post(`${ domainName }/login/`, {
                 email: $(".form-side input[type='email']").val(),
                 password: $(".form-side input[type='password']").val()
             }).then( ({ data })=>{

@@ -107,12 +107,20 @@ class UserView(APIView):
 
 
 class ChangePasswordView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
-        user = User.objects.get(id=request.user.id)
         try:
-            user.set_password(request.data.get("password"))
-            user.save()
-            return Response(status=200)
+            user = User.objects.get(id=request.user.id)
+            check = user.check_password(request.data.get("password"))
+            if check:
+                user.set_password(request.data.get("new_password"))
+                user.save()
+                return Response(status=200)
+
+            else:
+                return Response({"error_message": "password given does not match the existing password"}, status=200)
 
         except:
             return Response(status=400)

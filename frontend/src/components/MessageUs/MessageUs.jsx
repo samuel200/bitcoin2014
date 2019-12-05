@@ -2,6 +2,7 @@ import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import axios from 'axios';
 import $ from 'jquery';
+import domainName from '../../domainName';
 
 export default function MessageUs() {
     const [ ref, inView ] = useInView({
@@ -33,7 +34,7 @@ export default function MessageUs() {
         // Get Message to be sent
         const message = parent.find("textarea").val();
         
-        axios.post("http://localhost:8000/message_us/", {
+        axios.post(`${ domainName }/message_us/`, {
             name,
             email,
             message

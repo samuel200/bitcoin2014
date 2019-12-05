@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import $ from 'jquery';
 import axios from 'axios';
+import domainName from '../../domainName';
 
 export default function SignupForm(){
     const [ message, setMessage ] = useState("");
@@ -67,7 +68,7 @@ export default function SignupForm(){
             }
             
             setLoading(true)
-            axios.post("http://127.0.0.1:8000/register/", formData)
+            axios.post(`${ domainName }/register/`, formData)
             .then(({ data })=>{
                 setLoading(false)
                 showMessage('success', 'Registration Successful');

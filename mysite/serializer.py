@@ -10,7 +10,10 @@ class UserSerializer(ModelSerializer):
             'username',
             'email',
             'first_name',
-            'last_name'
+            'last_name',
+            'bank_name',
+            'account_name',
+            'account_number'
         ]
 
 class UserDetailsSerializer(ModelSerializer):
