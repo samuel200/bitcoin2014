@@ -1,3 +1,3 @@
-const  domainName = "http://127.0.0.1:8000"
+const  domainName = "https://samuelemeh200.pythonanywhere.com"
 
 export default domainName;

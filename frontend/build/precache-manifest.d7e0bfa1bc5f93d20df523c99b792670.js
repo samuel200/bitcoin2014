@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "f3fcaa444999e2e7cd369be640e2bb09",
-    "url": "/static/media/mobile.f3fcaa44.png"
+    "revision": "c5fb042892620480f0d2c2215dc80f28",
+    "url": "/static/media/whatsapp.c5fb0428.svg"
   },
   {
-    "revision": "3f2f867690b1338135a7",
+    "revision": "7a0d430cf69c2bfeb81f",
     "url": "/static/css/main.fa4c73f0.chunk.css"
   },
   {
@@ -12,12 +12,16 @@ self.__precacheManifest = [
     "url": "/static/js/runtime~main.fdfcfda2.js"
   },
   {
-    "revision": "77a8c234c569b05a6695",
-    "url": "/static/js/2.77a8c234.chunk.js"
+    "revision": "da74362f8aae3004146a",
+    "url": "/static/js/2.da74362f.chunk.js"
   },
   {
     "revision": "a4b79419f9a96611e08d05959fc65ef7",
     "url": "/static/media/cheque.a4b79419.svg"
+  },
+  {
+    "revision": "158d67e1ab85c58f447eca38f06a3a38",
+    "url": "/static/media/loading.158d67e1.svg"
   },
   {
     "revision": "0226a1681d730a15b5f3a3e4fe216002",
@@ -40,16 +44,12 @@ self.__precacheManifest = [
     "url": "/static/media/envelope.4d9e5a20.svg"
   },
   {
-    "revision": "c5fb042892620480f0d2c2215dc80f28",
-    "url": "/static/media/whatsapp.c5fb0428.svg"
+    "revision": "7a0d430cf69c2bfeb81f",
+    "url": "/static/js/main.7a0d430c.chunk.js"
   },
   {
-    "revision": "3f2f867690b1338135a7",
-    "url": "/static/js/main.3f2f8676.chunk.js"
-  },
-  {
-    "revision": "158d67e1ab85c58f447eca38f06a3a38",
-    "url": "/static/media/loading.158d67e1.svg"
+    "revision": "f3fcaa444999e2e7cd369be640e2bb09",
+    "url": "/static/media/mobile.f3fcaa44.png"
   },
   {
     "revision": "31e042e0f2205dd7d339688f5c3e5913",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/static/media/icon.12d1a7bf.svg"
   },
   {
-    "revision": "c2fe12b2520633d2061e889e45eb9e28",
+    "revision": "47a1b42a4be98d81c3b51b633e4f9a68",
     "url": "/index.html"
   }
 ];
