@@ -24,7 +24,6 @@ def home_view(request):
 def message_us(request):
 
     if request.method == "POST":
-        # print(request.data)
         subject = f"Bitcoin2014 Message From { request.data['name'] } with email { request.data['email'] }"
         message = request.data['message']
 
@@ -60,7 +59,6 @@ class LoginView(APIView):
 
 class RegistrationView(APIView):
     def post(self, request):
-        print(request.data)
         user_values = {
             "username": request.data.get('username'),
             "first_name": request.data.get('first_name'),
@@ -85,8 +83,7 @@ class RegistrationView(APIView):
             return Response({"success_message": "Registration successful."}, status=201)
 
         else:
-            print(user_serializer.errors)
-            return Response(status=401)
+            return Response({"error_message": user_serializer.errors}, status=200)
 
 class UserView(APIView):
     authentication_classes = [TokenAuthentication]
@@ -96,7 +93,6 @@ class UserView(APIView):
         try:
             user = User.objects.get(id=request.user.id)
             serializers = UserSerializer(user)
-            print(user.details.all())
             user_details = UserDetails.objects.get(user=user)
             details_serializers = UserDetailsSerializer(user_details)
             # return Response(serializers.data, status=200)
@@ -124,3 +120,30 @@ class ChangePasswordView(APIView):
 
         except:
             return Response(status=400)
+
+
+class ChangeAccountDetailsView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        data = {}
+        for key in request.data:
+            if request.data[key] != "" and request.data[key] != None:
+                data[key] = request.data[key]
+
+        try:
+            user = User.objects.get(id=request.user.id)
+            user_details = UserDetails.objects.get(user=user)
+            
+            user_serializer = UserSerializer(user)
+            serializer = UserDetailsSerializer(user_details, data=data, partial=True)
+            
+            if serializer.is_valid():
+                serializer.save()
+                return Response({ **user_serializer.data, **serializer.data }, status=201)
+            else:
+                return Response(status=400)
+
+        except:
+            return Response(status=401)

@@ -71,10 +71,21 @@ export default function SignupForm(){
             axios.post(`${ domainName }/register/`, formData)
             .then(({ data })=>{
                 setLoading(false)
+            if(data.error_message){
+                console.log(data.error_message);
+                if(data.error_message.username){
+                    showMessage('error', data.error_message.username["0"])
+                }else if(data.error_message.email){
+                    showMessage('error', data.error_message.email["0"])
+
+                }
+            }
+            else{
                 showMessage('success', 'Registration Successful');
                 setTimeout(()=>{
                     setRegistered(true);
                 }, 3000)
+            }
             }).catch(error =>{
                 setLoading(false);
                 showMessage('error', 'Error was experienced while registering user.')

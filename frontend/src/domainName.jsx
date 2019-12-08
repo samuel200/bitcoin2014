@@ -1,3 +1,3 @@
-const  domainName = "https://samuelemeh200.pythonanywhere.com"
+const  domainName = "https://samuelemeh200.pythonanaywhere.com"
 
 export default domainName;

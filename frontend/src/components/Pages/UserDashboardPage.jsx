@@ -4,6 +4,7 @@ import $ from 'jquery';
 import axios from 'axios';
 import SideBar from '../UserDashboard/SideBar';
 import DashboardBody from '../UserDashboard/DashboardBody';
+import domainName from '../../domainName';
 
 export default function UserDashboardPage({ authenticated, authenticationToken, setAuthenticated, setAuthenticatedUserData }){
     const [ currentPage, setCurrentPage ] = useState("1");
@@ -38,14 +39,14 @@ export default function UserDashboardPage({ authenticated, authenticationToken, 
             setAuthenticatedUser(JSON.parse(localStorage.getItem("authenticatedUser")));
         }else{
             // Make axios request for user data
-            axios.get('http://localhost:8000/user/', {
+            axios.get(`${ domainName }/user/`, {
                 headers: {
                     Authorization: `Token ${authenticationToken}`
                 }
             })
             .then( ({ data })=>{
                 setAuthenticatedUser(data);
-                localStorage.setItem('authenticatedUser', JSON.stringify({...data, ...({token: authenticationToken})}));
+                setAuthenticatedUserData(data);
             })
             .catch( error =>{
                 

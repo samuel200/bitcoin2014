@@ -132,12 +132,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST = [
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
-    "http://127.0.0.1:8000"
-]
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 

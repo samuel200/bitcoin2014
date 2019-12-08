@@ -7,13 +7,11 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = [
+            'id',
             'username',
             'email',
             'first_name',
             'last_name',
-            'bank_name',
-            'account_name',
-            'account_number'
         ]
 
 class UserDetailsSerializer(ModelSerializer):

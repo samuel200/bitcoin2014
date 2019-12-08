@@ -4,24 +4,32 @@ import axios from 'axios';
 import domainName from '../../../domainName';
 
 export default function Profile({ authenticatedUser }) {
-    const { email, first_name, last_name, phone_number, country, bitcoin_address } = authenticatedUser;
+    const { email, first_name, last_name, phone_number, country, bitcoin_address, bank_name, account_name, account_number, username } = authenticatedUser;
     const [ message, setMessage ] = useState("");
-    const [ loading, setLoading ] = useState(false);
     const [ loading2, setLoading2 ] = useState(false);
+    const [ loading, setLoading ] = useState(false);
 
     const showMessage = (type, message, val=1) =>{
         let errorHolder;
         
         if(val === 1){
-            errorHolder = $("#message");
-        }else{
             errorHolder = $(".message");
+        }else{
+            errorHolder = $("#message");
         }
 
         if(type === "success"){
-            errorHolder.attr('class', type)
+            if(val === 1){
+                errorHolder.addClass(type)
+            }else{
+                errorHolder.attr('class', type)
+            }
         }else if( type === "error"){
-            errorHolder.attr('class', type)
+            if(val === 1){
+                errorHolder.addClass(type)
+            }else{
+                errorHolder.attr('class', type)
+            }
         }
 
         setMessage(message)
@@ -55,6 +63,7 @@ export default function Profile({ authenticatedUser }) {
             }
         }).then(({ data })=>{
             showMessage("success", "Accout Details Updated Successfully", 0)
+            localStorage.setItem("authenticatedUser", JSON.stringify({ ...data, ...authenticatedUser.token }))
             setLoading2(false);
         }).catch( error=>{
             setLoading2(false);
@@ -70,13 +79,13 @@ export default function Profile({ authenticatedUser }) {
         console.log(form.find('input'))
 
         if(newPassword.value === "" || newPasswordConfirm.value === "" || oldPassword.value === ""){
-            showMessage("error", "required fields are still empty");
+            showMessage("error", "required fields are still empty", 1);
         }else if(newPassword.value !== newPasswordConfirm.value){
-            showMessage("error", "passwords do not match");
+            showMessage("error", "passwords do not match", 1);
         }else if(!(newPassword.value.length >= 8 && /[a-zA-z]/g.test(newPassword.value) && /\d/g.test(newPassword.value))){
-            showMessage("error", "password must have 8 characters of both letters and number")
+            showMessage("error", "password must have 8 characters of both letters and number", 1)
         }else if(oldPassword.value === newPassword.value){
-            showMessage("error", "old and new passwords should not be the same")
+            showMessage("error", "old and new passwords should not be the same", 1)
         }else{
             setLoading(true);
 
@@ -91,7 +100,7 @@ export default function Profile({ authenticatedUser }) {
                 const { error_message } = data;
                 
                 if(error_message){
-                    showMessage("error", error_message);
+                    showMessage("error", error_message, 1);
                 }else{
                     showMessage("success", "Password Changed Successfully", 1)
                     oldPassword.value = "";
@@ -151,7 +160,7 @@ export default function Profile({ authenticatedUser }) {
                     </tr>
                     <tr>
                         <th scope="row">Referal Link</th>
-                        <td>https://coincore.co/register.html?r=samuelemeh200@gmail.com</td>
+                        <td>{ `${ domainName }/${ username }/signup/` }</td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -159,7 +168,7 @@ export default function Profile({ authenticatedUser }) {
             </table>
         </div>
             <div className="table-responsive" id="transaction-form-holder">
-            <div id="message" className="message">{ message }</div>
+            <div id="message">{ message }</div>
             <h3>ACCOUNT DETAILS</h3>
             <form method="post" action={`${domainName}/change_account_details/`} onSubmit={ editAccountDetails }>
             <table class="table table-hover transaction-table profile-table">
@@ -168,7 +177,7 @@ export default function Profile({ authenticatedUser }) {
                             <th scope="row">Bitcoin Address</th>
                             <td>
                                 <div>
-                                    <input type="text"  id="email" placeholder="Your Bitcoin Address" defaultValue={ bitcoin_address }/>
+                                    <input type="text"  id="email" placeholder="Your Bitcoin Address" defaultValue={ bitcoin_address ? bitcoin_address : "" }/>
                                 </div>
                             </td>
                             <td></td>
@@ -178,7 +187,7 @@ export default function Profile({ authenticatedUser }) {
                             <th scope="row">Bank Name</th>
                             <td>
                                 <div>
-                                    <input type="text"  id="bank-name" placeholder="Your Bank Name"/>
+                                    <input type="text"  id="bank-name" placeholder="Your Bank Name" defaultValue={ bank_name ? bank_name : "" }/>
                                 </div>
                             </td>
                             <td></td>
@@ -188,7 +197,7 @@ export default function Profile({ authenticatedUser }) {
                             <th scope="row">Account Holder Name</th>
                             <td>
                                 <div>
-                                    <input type="text"  id="email" placeholder="Your Account Holder Name"/>
+                                    <input type="text"  id="email" placeholder="Your Account Holder Name" defaultValue={ account_name ? account_name : "" }/>
                                 </div>
                             </td>
                             <td></td>
@@ -198,7 +207,7 @@ export default function Profile({ authenticatedUser }) {
                             <th scope="row">Account Number</th>
                             <td>
                                 <div>
-                                    <input type="text"  id="email" placeholder="Your Account Number"/>
+                                    <input type="text"  id="email" placeholder="Your Account Number" defaultValue={ account_number ? account_number : "" }/>
                                 </div>
                             </td>
                             <td></td>
@@ -207,17 +216,17 @@ export default function Profile({ authenticatedUser }) {
 
                     </tbody>
             </table>
-            <button type="submit">Set Transaction Details</button>
+            <button type="submit" disabled={ loading2 }>Set Transaction Details</button>
             <div style={{
                         textAlign: "center",
                         display: loading2 ? "block" : "none"
                     }}>
-                        <img src={ require('../../../img/loading.svg')} alt="loading-animation" style={{transform: "scale(.7)"}}/>
+                        <img src={ require('../../../img/loading.svg')} alt="loading-animation" style={{transform: "scale(.4)"}}/>
             </div>
             </form>
         </div>
         <div id="transaction-form-holder">
-            <div id="message" >{ message }</div>
+            <div id="message" className="message">{ message }</div>
             <h4>Change Password</h4>
             <form method="post" action={`${domainName}/change_password`} onSubmit={ changePassword }>
                 <div>
@@ -238,7 +247,7 @@ export default function Profile({ authenticatedUser }) {
                         confirm your new password
                     </div>
                 </div>
-                <button type="submit">Change Password</button>
+                <button type="submit" disabled={ loading }>Change Password</button>
                 <div style={{
                         textAlign: "center",
                         display: loading ? "block" : "none"
