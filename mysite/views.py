@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User, UserManager
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
@@ -45,14 +46,15 @@ class LoginView(APIView):
             check = user.check_password(password)
 
             if check:
-                data = req.post("http://127.0.0.1:8000/api-token-auth/",{
-                    "username": user.username,
-                    "password": password
-                })
-                return Response(data.content, status=201)
+                # data = req.post("https://samuelemeh200.pythonanywhere.com/api-token-auth/",{
+                #     "username": user.username,
+                #     "password": password
+                # })
+                token = Token.objects.get(user=user).key
+                return Response({"token": token}, status=201)
 
             else:
-                return Response(status=401)
+                return Response(status=404)
 
         except Exception as e:
             return Response(status=401)

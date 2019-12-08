@@ -47,7 +47,7 @@ export default function SigninForm({ authenticated, setAuthenticationToken, setA
                 email: $(".form-side input[type='email']").val(),
                 password: $(".form-side input[type='password']").val()
             }).then( ({ data })=>{
-                data = JSON.parse(data);
+                // data = JSON.parse(data);
                 setLoading(false);
                 setAuthenticationToken(data.token);
                 setAuthenticated(true);
