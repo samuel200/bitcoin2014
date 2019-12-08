@@ -1,0 +1,4 @@
+django==2.2
+requires
+djangorestframework
+django_cors_headers

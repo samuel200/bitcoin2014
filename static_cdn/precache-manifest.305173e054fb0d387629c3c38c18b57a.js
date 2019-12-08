@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/media/whatsapp.c5fb0428.svg"
   },
   {
-    "revision": "979363cf29d09e575aac",
+    "revision": "86dea6db6396f17438eb",
     "url": "/static/css/main.fa4c73f0.chunk.css"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/static/media/envelope.4d9e5a20.svg"
   },
   {
-    "revision": "979363cf29d09e575aac",
-    "url": "/static/js/main.979363cf.chunk.js"
+    "revision": "86dea6db6396f17438eb",
+    "url": "/static/js/main.86dea6db.chunk.js"
   },
   {
     "revision": "f3fcaa444999e2e7cd369be640e2bb09",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/static/media/icon.12d1a7bf.svg"
   },
   {
-    "revision": "72a6b994fcb1eb83988ded5b05127bc0",
+    "revision": "e2df4ccf22ba92986c6a8867ea97f8b2",
     "url": "/index.html"
   }
 ];
