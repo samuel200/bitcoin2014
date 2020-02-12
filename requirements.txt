@@ -1,4 +1,4 @@
-django==2.2
+django==2.2.10
 requires
 djangorestframework
 django_cors_headers
