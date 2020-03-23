@@ -4,7 +4,7 @@ export default function SigninIllustration() {
     return (
         <div id="sign-in-illustration">
             <img src={ require("../../img/logo-dark.png")} alt="logo"/>
-            <h1>Bitcoin2014</h1>
+            <h1>GLOBALTRADES</h1>
         </div>
     )
 }

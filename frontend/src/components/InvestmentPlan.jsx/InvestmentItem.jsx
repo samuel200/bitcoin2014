@@ -11,8 +11,8 @@ export default function InvestmentItem({ planName, offer, min, max, referalBonus
         <div id="investment-plan-item" style={{ borderBottomColor: color, ...style}} ref={ ref } onClick={ itemOnClick } >
             <h2 style={{ transitionDelay: "0s", color , ...(inView ? changedStyle : {} )}}>{planName} plan</h2>
             <p style={{ transitionDelay: ".2s" , ...(inView ? changedStyle : {} )}}>{ offer }</p>
-            <p style={{ transitionDelay: ".4s" , ...(inView ? changedStyle : {} )}}>max: { min }</p>
-            <p style={{ transitionDelay: ".6s" , ...(inView ? changedStyle : {} )}}>min: { max }</p>
+            <p style={{ transitionDelay: ".4s" , ...(inView ? changedStyle : {} )}}>max: { max }</p>
+            <p style={{ transitionDelay: ".6s" , ...(inView ? changedStyle : {} )}}>min: { min }</p>
             <p style={{ transitionDelay: ".8s" , ...(inView ? changedStyle : {} )}}>referal bonus: { referalBonus }</p>
         </div>
     )

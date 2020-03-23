@@ -3,8 +3,14 @@ import $ from 'jquery';
 import axios from 'axios';
 import domainName from '../../../domainName';
 
-export default function Profile({ authenticatedUser }) {
-    const { email, first_name, last_name, phone_number, country, bitcoin_address, bank_name, account_name, account_number, username } = authenticatedUser;
+export default function Profile({ authenticatedUser, setAuthenticatedUser}) {
+    const { email, first_name, 
+            last_name, phone_number, 
+            country, referrals,
+            bank_name, account_name, 
+            account_number, username, 
+            referral_earnings } = authenticatedUser;
+            
     const [ message, setMessage ] = useState("");
     const [ loading2, setLoading2 ] = useState(false);
     const [ loading, setLoading ] = useState(false);
@@ -48,22 +54,22 @@ export default function Profile({ authenticatedUser }) {
     const editAccountDetails = e =>{
         e.preventDefault();
         const form = $(e.target);
-        let [ bitcoin_address, bank_name, account_name, account_number ] = form.find('input');
-        [ bitcoin_address, bank_name, account_name, account_number ] = [ bitcoin_address.value, bank_name.value, account_name.value, account_number.value ]
-        
+        let [ bank_name, account_name, account_number ] = form.find('input');
+        [ bank_name, account_name, account_number ] = [ bank_name.value, account_name.value, account_number.value ]
+        const authenticationToken = localStorage.getItem("authenticationToken");
+
         setLoading2(true);
         axios.post(`${domainName}/change_account_details/`, {
-            bitcoin_address,
             bank_name,
             account_name,
             account_number
         },{
             headers:{
-                Authorization: `Token ${ authenticatedUser.token }`
+                Authorization: `Token ${ authenticationToken }`
             }
         }).then(({ data })=>{
             showMessage("success", "Accout Details Updated Successfully", 0)
-            localStorage.setItem("authenticatedUser", JSON.stringify({ ...data, ...authenticatedUser.token }))
+            setAuthenticatedUser({ ...data, token: authenticationToken });
             setLoading2(false);
         }).catch( error=>{
             setLoading2(false);
@@ -118,9 +124,9 @@ export default function Profile({ authenticatedUser }) {
     return (
         <div id="profile-section">
             <h2>Profile Overview</h2>
-            <div className="table-responsive" id="transaction-form-holder">
+            <div id="transaction-form-holder">
             <h3>PROFILE INFO</h3>
-            <table class="table table-hover transaction-table profile-table">
+            <table className="table table-hover transaction-table profile-table hide-on-med-and-down">
                 <tbody style={{textTransform: "capitalize"}}>
                     <tr>
                         <th scope="row">Full Name</th>
@@ -148,19 +154,66 @@ export default function Profile({ authenticatedUser }) {
                     </tr>
                     <tr>
                         <th scope="row">Referals</th>
-                        <td>0</td>
+                        <td>{ referrals }</td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <th scope="row">Referal Earning</th>
-                        <td>$100</td>
+                        <td>${ referral_earnings }</td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <th scope="row">Referal Link</th>
-                        <td>{ `${ domainName }/${ username }/signup/` }</td>
+                        <td style={{textTransform: "lowercase !important"}}><a href={ `${ domainName }/signup/${ username }` }>{ `${ domainName }/signup/${ username }` }</a></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table className="table table-hover transaction-table profile-table table-responsive hide-on-large-only">
+                <tbody style={{textTransform: "capitalize"}}>
+                    <tr>
+                        <th scope="row">Full Name</th>
+                        <td>{ first_name + " " + last_name }</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td>{ email }</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Country</th>
+                        <td>{ country }</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Phone Number</th>
+                        <td>{ phone_number }</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Referals</th>
+                        <td>{ referrals }</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Referal Earning</th>
+                        <td>${ referral_earnings }</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Referal Link</th>
+                        <td style={{textTransform: "lowercase !important"}}><a href={ `${ domainName }/signup/${ username }` }>{ `${ domainName }/signup/${ username }` }</a></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -173,16 +226,6 @@ export default function Profile({ authenticatedUser }) {
             <form method="post" action={`${domainName}/change_account_details/`} onSubmit={ editAccountDetails }>
             <table class="table table-hover transaction-table profile-table">
                     <tbody>
-                        <tr>
-                            <th scope="row">Bitcoin Address</th>
-                            <td>
-                                <div>
-                                    <input type="text"  id="email" placeholder="Your Bitcoin Address" defaultValue={ bitcoin_address ? bitcoin_address : "" }/>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
                         <tr>
                             <th scope="row">Bank Name</th>
                             <td>

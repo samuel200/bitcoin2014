@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import RateItem from './RateItem'
 
 export default function Rates() {
@@ -26,10 +26,22 @@ export default function Rates() {
       }
     ]
     return (
-      <section id="rate-section">
-        {
-          rates.map( rate => <RateItem scriptContent={ rate } />)
-        }
-      </section>
+      <Fragment>
+        <section id="rate-section" className="hide-on-large-only" style={{ 
+          display: "flex", 
+          flexDirection: "column", 
+          justifyContent: "space-evenly", 
+          alignItems: "center"
+        }}>
+          {
+            rates.map( rate => <RateItem scriptContent={ rate } />)
+          }
+        </section>
+        <section id="rate-section" className="hide-on-med-and-down">
+          {
+            rates.map( rate => <RateItem scriptContent={ rate } />)
+          }
+        </section>
+      </Fragment>
     )
 }

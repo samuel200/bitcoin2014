@@ -18,19 +18,19 @@ export default function ContactContent({ inView }) {
             <h2 className="heading">contact us</h2>
             <p style={{ ...startingStyle, transitionDelay: ".2s" }}>
                 <img src={ require("../../img/maps-and-flags.svg") } alt="flag"/>
-                <span>Address:2 MINT PLAZA, SUITE 604 SAN FRANCISCO, CA 94103, USA.</span>
+                <span>Address: 6736 S Sherbourne Dr Los Angeles, California(CA), 90056</span>
             </p>
             <p style={{ ...startingStyle, transitionDelay: ".4s" }}>
                 <img src={ require("../../img/call-answer.svg") } alt="phone"/>
-                <span>Call Us :+19089776171</span>
+                <span>Call Us: +18024443215</span>
             </p>
             <p style={{ ...startingStyle, transitionDelay: ".6s" }}>
                 <img src={ require("../../img/envelope.svg") } alt="email"/>
-                <span>support@bitcoin2014.com</span>
+                <span>globaltradeusa@yahoo.com</span>
             </p>
             <p style={{ ...startingStyle, transitionDelay: ".8s" }}>
                 <img src={ require("../../img/whatsapp.svg") } alt="whatsapp"/>
-                <span>Whatsapp :+19089776171</span>
+                <span>Whatsapp: +18024443215</span>
             </p>
         </div>
     )

@@ -19,20 +19,20 @@ export default function FaqPage() {
             name: "general",
             faqs: [
                 {
-                    question: "What is Bitcoin2014?",
-                    answer: "Bitcoin2014 is a professional trading & investment company with emphasis on cryptocurrency, forex, binary option, CFDs. We are a group of qualified and trained financiers with technical knowledge. We actively monitor and trade the forex market, binary option, CFDs. The vast majority of customer deposits are stored offline in air-gapped cold storage. We only keep enough online to facilitate active trading, which greatly minimizes risk and exposure. Our auditing programs monitor every activity 24/7/365. Their job is to report and block any suspicious activity before it becomes a problem. We have strong roots and believe in customer service and transparency. We are committed to optimum delivery and uprightness. We let our service do the talking. Any funds you put into Bitcoin2014 are only used to facilitate trading through your account. Unlike banks, we do not operate on fractional reserves."
+                    question: "What is GLOBALTRADES?",
+                    answer: "GLOBALTRADES is a professional trading & investment company with emphasis on cryptocurrency, forex, binary option, CFDs. We are a group of qualified and trained financiers with technical knowledge. We actively monitor and trade the forex market, binary option, CFDs. The vast majority of customer deposits are stored offline in air-gapped cold storage. We only keep enough online to facilitate active trading, which greatly minimizes risk and exposure. Our auditing programs monitor every activity 24/7/365. Their job is to report and block any suspicious activity before it becomes a problem. We have strong roots and believe in customer service and transparency. We are committed to optimum delivery and uprightness. We let our service do the talking. Any funds you put into GLOBALTRADES are only used to facilitate trading through your account. Unlike banks, we do not operate on fractional reserves."
                 },
                 {
                     question: "How do i make money here?",
                     answer: "We provide individuals and businesses a world class experience to earn weekly/monthly passive income or otherwise decide to compound profits for improved returns. The more money you deposit, the more money you make. The profit is generated from trading cryptocurrencies as well as forex, CFDs, binary options in registered exchanges."
                 },
                 {
-                    question: "Is using Bitcoin2014 free of charge?",
+                    question: "Is using GLOBALTRADES free of charge?",
                     answer: "Yes, it is totally free of charge."
                 },
                 {
-                    question: "Is Bitcoin2014 a legitimate company?",
-                    answer: "Bitcoin2014 Technologies is a legal investment company incorporated in Czech Republic and licensed to operate in all regions and countries worldwide."
+                    question: "Is GLOBALTRADES a legitimate company?",
+                    answer: "GLOBALTRADES Technologies is a legal investment company incorporated in Czech Republic and licensed to operate in all regions and countries worldwide."
                 },
             ]
         },
@@ -62,7 +62,7 @@ export default function FaqPage() {
             faqs: [
                 {
                     question: "Who is eligible to invest?",
-                    answer: "Bitcoin2014 is open to everyone of legal age to make investments and financial decisions for themselves. You are responsible for making sure that you comply with local laws."
+                    answer: "GLOBALTRADES is open to everyone of legal age to make investments and financial decisions for themselves. You are responsible for making sure that you comply with local laws."
                 },
                 {
                     question: "How much can i make?",
@@ -79,7 +79,7 @@ export default function FaqPage() {
             faqs: [
                 {
                     question: "Who is eligible to invest?",
-                    answer: "Bitcoin2014 is open to everyone of legal age to make investments and financial decisions for themselves. You are responsible for making sure that you comply with local laws."
+                    answer: "GLOBALTRADES is open to everyone of legal age to make investments and financial decisions for themselves. You are responsible for making sure that you comply with local laws."
                 }
             ]
         }

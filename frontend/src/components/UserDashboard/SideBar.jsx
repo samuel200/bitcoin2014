@@ -1,7 +1,7 @@
-import React from 'react';
+import React,{ Fragment } from 'react';
 import SideBarItem from './SideBarItem';
 
-export default function SideBar({ changePage, setAuthenticatedUserData, setAuthenticated }){
+export default function SideBar({ changePage, setAuthenticatedUserData, setAuthenticated, style }){
     const navigations = [
         {
             iconLink: require("./img/dashboard.svg"),
@@ -38,14 +38,26 @@ export default function SideBar({ changePage, setAuthenticatedUserData, setAuthe
         },
     ]
     return(
-        <div id="side-bar">
-            <h4>Menu</h4>
-            {navigations.map( ({ iconLink, name }, id) => <SideBarItem id={ id } 
-                                                                    changePage={ changePage } 
-                                                                    iconLink={ iconLink } 
-                                                                    setAuthenticatedUserData={ setAuthenticatedUserData }
-                                                                    setAuthenticated={ setAuthenticated }
-                                                                    name={ name }/>)}
-        </div>
+        <Fragment>
+            <div id="side-bar" className="hide-on-med-and-down" style={ style }>
+                <h4>Menu</h4>
+                {navigations.map( ({ iconLink, name }, id) => <SideBarItem id={ id } 
+                                                                        changePage={ changePage } 
+                                                                        iconLink={ iconLink } 
+                                                                        setAuthenticatedUserData={ setAuthenticatedUserData }
+                                                                        setAuthenticated={ setAuthenticated }
+                                                                        name={ name }/>)}
+            </div>
+            <div id="side-bar" className="hide-on-large-only mobile-sidebar" style={ style }>
+                <h4>Menu</h4>
+                {navigations.map( ({ iconLink, name }, id) => <SideBarItem id={ id } 
+                                                                        changePage={ changePage } 
+                                                                        iconLink={ iconLink } 
+                                                                        setAuthenticatedUserData={ setAuthenticatedUserData }
+                                                                        setAuthenticated={ setAuthenticated }
+                                                                        name={ name }/>)}
+            </div>
+
+        </Fragment>
     )
 }

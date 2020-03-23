@@ -1,16 +1,17 @@
 import React from 'react'
 import AccountBalanceItem from './AccountBalanceItem'
 
-export default function AccountBalanceSection() {
+export default function AccountBalanceSection({ authenticatedUser }) {
+    const { account_balance, referral_earnings, investment_balance } = authenticatedUser;
     const balance = [
         {
             type: "Account Balance",
-            ammount: "$0",
+            ammount: `$${ account_balance }`,
             imageLink: require("../img/cheque.svg")
         },
         {
-            type: "Investment Profits",
-            ammount: "$0",
+            type: "Investment Balance",
+            ammount: `$${ investment_balance }`,
             imageLink: require("../img/cheque.svg")
         },
         {
@@ -20,7 +21,7 @@ export default function AccountBalanceSection() {
         },
         {
             type: "Referral Earnings",
-            ammount: "$0",
+            ammount: `$${ referral_earnings }`,
             imageLink: require("../img/cheque.svg")
         },
     ]

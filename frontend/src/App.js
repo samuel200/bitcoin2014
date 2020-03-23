@@ -9,6 +9,7 @@ import FaqPage from './components/Pages/FaqPage';
 import ContactPage from './components/Pages/ContactPage';
 import SigninPage from './components/Pages/SigninPage';
 import SignupPage from './components/Pages/SignupPage';
+import ReferralSignUp from './components/Pages/ReferralSignUp'
 
 import Particles from 'react-particles-js';
 import HomePage from './components/Pages/HomePage';
@@ -63,7 +64,7 @@ class App extends Component {
               params={{
                 "particles": {
                     "number": {
-                        "value": 50
+                        "value": 15
                     },
                     "size": {
                         "value": 3
@@ -102,6 +103,7 @@ class App extends Component {
                                                             />
                 )}/>
                 <Route path="/signup" component={ SignupPage }/>
+                <Route path="/signup/:username" component={ ReferralSignUp }/>
                 <Route path="/about" component={ AboutPage }/>
                 <Route path="/investments" component={ InvestmentPage }/>
                 <Route path="/faq" component={ FaqPage }/>

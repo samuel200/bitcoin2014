@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function AboutContentSide({ inView }) {
     return (
@@ -15,7 +16,7 @@ export default function AboutContentSide({ inView }) {
                 On-line traders are now able to gain access to pricing and liquidity previously 
                 only available to investment banks and high net worth individuals.
             </p>
-            <a href="/signup" style={ inView ? {opacity: 1, top: "0px"} : {} }>Sign Up</a>
+            <Link to="/signup" className={inView ?  "sign-up-button": "" }>Sign Up</Link>
         </section>
     )
 }

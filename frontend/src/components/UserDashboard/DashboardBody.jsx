@@ -1,5 +1,5 @@
-import React from 'react';
-// import $ from 'jquery';
+import React, { Fragment } from 'react';
+import $ from 'jquery';
 import CustomerSupport from './CustomerSupport/CustomerSupport';
 import DashboardFooter from './DashboardFooter';
 import DashboardSection from './DashboardSection/DashboardSection';
@@ -9,7 +9,7 @@ import Withdraw from './Transactions/Withdraw';
 import Deposit from './Transactions/Deposit';
 import Profile from './ProfileSection/Profile';
 
-export default function DashboardBody({ currentPage, changePage, authenticatedUser }){
+export default function DashboardBody({ currentPage, changePage, authenticatedUser, setAuthenticatedUser, authenticationToken }){
     let page;
 
     switch(currentPage){
@@ -18,11 +18,11 @@ export default function DashboardBody({ currentPage, changePage, authenticatedUs
             break;
 
         case "2":
-            page = <Profile authenticatedUser={ authenticatedUser }/>
+            page = <Profile authenticatedUser={ authenticatedUser } setAuthenticatedUser={ setAuthenticatedUser }/>
             break;
 
         case "3":
-            page = <AccountOverview authenticatedUser={ authenticatedUser }/>
+            page = <AccountOverview authenticatedUser={ authenticatedUser } setAuthenticatedUser={ setAuthenticatedUser }/>
             break;
 
         case "4":
@@ -39,11 +39,11 @@ export default function DashboardBody({ currentPage, changePage, authenticatedUs
             break;
 
         case "5":
-            page = <Withdraw  authenticatedUser={ authenticatedUser }/>
+            page = <Withdraw authenticationToken={ authenticationToken } authenticatedUser={ authenticatedUser } setAuthenticatedUser={ setAuthenticatedUser }/>
             break;
 
         case "6":
-            page = <Deposit  authenticatedUser={ authenticatedUser }/>
+            page = <Deposit authenticationToken={ authenticationToken } authenticatedUser={ authenticatedUser } setAuthenticatedUser={ setAuthenticatedUser }/>
             break;
         
         case "7":
@@ -52,10 +52,19 @@ export default function DashboardBody({ currentPage, changePage, authenticatedUs
     }
 
     return(
-        <div id="dashboard-body">
-            {/* <DashboardBody /> */}
-            { page }
-            <DashboardFooter />
-        </div>
+        <Fragment>
+            <div id="dashboard-body" className="hide-on-large-only" onClick={()=>{
+                $("#side-bar").css({
+                    maxHeight: "0px"
+                }) 
+            }}>
+                { page }
+                <DashboardFooter />
+            </div>
+            <div id="dashboard-body" className="hide-on-med-and-down">
+                { page }
+                <DashboardFooter />
+            </div>
+        </Fragment>
     )
 }

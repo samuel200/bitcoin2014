@@ -11,7 +11,7 @@ export default function MainScreen() {
         <section id="main-screen">
             <section ref={ ref } id="main-screen-container" className={inView ? "about-in-view": ""}>
                 <h1>Decentralized Trading &amp; Investment platform with blockchain infrastructure</h1>
-                <p><b>BitCoin2014</b> is an investment firm whose focus is on projects related to Bitcoin and Blockchain technologies...</p>
+                <p><b>GLOBALTRADES</b> is an investment firm whose focus is on projects related to Bitcoin and Blockchain technologies...</p>
                 <Link to="/signup">Let’s Get Started</Link>
             </section>
         </section>

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function WithdrawalTransactionTable() {
+export default function WithdrawalTransactionTable({ authenticatedUser }) {
     return (
         <div id="transaction-form-holder" className="transaction-item">
-            <h3>Withdrawal History</h3>
+            <h3 style={{ fontSize: "1.1em"}}>Withdrawal History</h3>
             <div className="table-responsive">
                 <table class="table table-striped transaction-table">
                     <thead>
@@ -16,13 +16,21 @@ export default function WithdrawalTransactionTable() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">50c.MVZV2w.Zs</th>
-                            <td>Bitcoin</td>
-                            <td>1000</td>
-                            <td>11/11/2019 22:11</td>
-                            <td>PENDING</td>
-                        </tr>
+                        {
+                            authenticatedUser.withdrawals.length > 0 ?
+                            authenticatedUser.withdrawals.map( withdrawal =>{
+                                return(
+                                    <tr>
+                                        <th scope="row">{ withdrawal.id }</th>
+                                        <td>{ withdrawal.method }</td>
+                                        <td>{ withdrawal.ammount }</td>
+                                        <td>{ withdrawal.date }</td>
+                                        <td>{ withdrawal.active ? "CONFIRMED" : "@PENDING" }</td>
+                                    </tr>
+                                )
+                            }):
+                            <div>No Withdrawal Has Been Made</div>
+                        }
                     </tbody>
                 </table>
             </div>

@@ -4,24 +4,28 @@ self.__precacheManifest = [
     "url": "/static/media/whatsapp.c5fb0428.svg"
   },
   {
-    "revision": "ffce12943e8655285aa3",
-    "url": "/static/css/main.fa4c73f0.chunk.css"
+    "revision": "15a253a4aeacd55799db",
+    "url": "/static/css/main.4dabbac4.chunk.css"
   },
   {
     "revision": "fdfcfda2d9b1bf31db52",
     "url": "/static/js/runtime~main.fdfcfda2.js"
   },
   {
-    "revision": "da74362f8aae3004146a",
-    "url": "/static/js/2.da74362f.chunk.js"
+    "revision": "683cc5fd0ab4a85ec003",
+    "url": "/static/js/2.683cc5fd.chunk.js"
   },
   {
-    "revision": "a4b79419f9a96611e08d05959fc65ef7",
-    "url": "/static/media/cheque.a4b79419.svg"
+    "revision": "c58c62c583a44e9a5e5d1bc5b7b60e86",
+    "url": "/static/media/logo-dark.c58c62c5.png"
   },
   {
     "revision": "158d67e1ab85c58f447eca38f06a3a38",
     "url": "/static/media/loading.158d67e1.svg"
+  },
+  {
+    "revision": "a4b79419f9a96611e08d05959fc65ef7",
+    "url": "/static/media/cheque.a4b79419.svg"
   },
   {
     "revision": "0226a1681d730a15b5f3a3e4fe216002",
@@ -44,8 +48,8 @@ self.__precacheManifest = [
     "url": "/static/media/envelope.4d9e5a20.svg"
   },
   {
-    "revision": "ffce12943e8655285aa3",
-    "url": "/static/js/main.ffce1294.chunk.js"
+    "revision": "15a253a4aeacd55799db",
+    "url": "/static/js/main.15a253a4.chunk.js"
   },
   {
     "revision": "f3fcaa444999e2e7cd369be640e2bb09",
@@ -88,7 +92,7 @@ self.__precacheManifest = [
     "url": "/static/media/icon.12d1a7bf.svg"
   },
   {
-    "revision": "fca2ece875eccfcc8f0c86af4f656a0a",
+    "revision": "eb077f23a8dc1509231a72b02a7b2191",
     "url": "/index.html"
   }
 ];

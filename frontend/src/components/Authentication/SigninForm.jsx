@@ -50,6 +50,7 @@ export default function SigninForm({ authenticated, setAuthenticationToken, setA
                 // data = JSON.parse(data);
                 setLoading(false);
                 setAuthenticationToken(data.token);
+                localStorage.setItem("authenticationToken", data.token);
                 setAuthenticated(true);
             }).catch( (error) =>{
                 setLoading(false);
@@ -75,7 +76,7 @@ export default function SigninForm({ authenticated, setAuthenticationToken, setA
                     <input type="password" className="required" name="password" id="password" placeholder="Your Password"/>
                 </div>
                 <div>
-                    <button className="btn" type="submit">Sign in</button>
+                    <button className="btn" type="submit" disabled={ loading }>Sign in</button>
                 </div>
                 <div>
                     <p>Don't have an account? <Link to="/signup">Register now</Link></p>
@@ -84,7 +85,7 @@ export default function SigninForm({ authenticated, setAuthenticationToken, setA
                         textAlign: "center",
                         display: loading ? "block" : "none"
                     }}>
-                        <img src={ require('../../img/loading.svg')} alt="loading-animation" style={{transform: "scale(.7)"}}/>
+                        <img src={ require('../../img/loading.svg')} alt="loading-animation" style={{transform: "scale(.4)"}}/>
                 </div>
             </form>
         </div>

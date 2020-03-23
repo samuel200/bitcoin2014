@@ -21,7 +21,7 @@ export default function ToTop() {
         background: "#7C2CEA",
         cursor: "pointer",
         position: "fixed",
-        bottom: "80px",
+        bottom: "120px",
         right: "30px",
         textAlign: "center",
         boxShadow: "1px 2px 5px #26164D",

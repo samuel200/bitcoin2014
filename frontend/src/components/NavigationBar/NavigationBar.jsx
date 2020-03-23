@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import $ from 'jquery';
 import NavigationItem from './NavigatonItem';
 
 
@@ -25,11 +26,11 @@ export default function NavigationBar({ style }) {
             <Link to='/'>
                 <header>
                     <img src={ require("../../img/logo-dark.png")} alt="logo" id="navigation-logo"/>
-                    <h2>BITCOIN2014</h2>
+                    <h2>GLOBALTRADES</h2>
                 </header>
             </Link>
-            <span onClick={ ()=>{
-                setPos(!down);
+            <span className="hide-on-large-only" onClick={ ()=>{
+                changePos(!down);
             }}><img src={ require("../../img/menu.png")} alt="menu"/></span>
             </div>
             <div id="link-section" style={{
