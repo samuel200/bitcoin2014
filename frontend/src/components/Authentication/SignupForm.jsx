@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import $ from 'jquery';
 import axios from 'axios';
-import domainName from '../../domainName';
 
 export default function SignupForm({ username }){
     const [ message, setMessage ] = useState("");
@@ -68,7 +67,7 @@ export default function SignupForm({ username }){
             }
             
             setLoading(true)
-            axios.post(`${ domainName }/register/${ username ? username + "/" : "" }`, formData)
+            axios.post(`/register/${ username ? username + "/" : "" }`, formData)
             .then(({ data })=>{
                 setLoading(false)
             if(data.error_message){
@@ -121,7 +120,7 @@ export default function SignupForm({ username }){
                     {/* <input type="text" name="country" id="country" className="required" placeholder="Your Country"/>
                     <label for="country"><b>Country</b></label> */}
                     <select id="country" name="country" className="form-control required">
-                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Afghanistan" selected>Afghanistan</option>
                         <option value="Åland Islands">Åland Islands</option>
                         <option value="Albania">Albania</option>
                         <option value="Algeria">Algeria</option>
@@ -281,7 +280,7 @@ export default function SignupForm({ username }){
                         <option value="New Zealand">New Zealand</option>
                         <option value="Nicaragua">Nicaragua</option>
                         <option value="Niger">Niger</option>
-                        <option value="Nigeria" selected>Nigeria</option>
+                        <option value="Nigeria">Nigeria</option>
                         <option value="Niue">Niue</option>
                         <option value="Norfolk Island">Norfolk Island</option>
                         <option value="Northern Mariana Islands">Northern Mariana Islands</option>

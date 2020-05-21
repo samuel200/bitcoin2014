@@ -85,7 +85,7 @@ export default function WithdrawalForm({ authenticatedUser, setAuthenticatedUser
                     <input type="text" name="account-balance" value={`$${ authenticatedUser.account_balance }`}/>
                 </div>
                 <div>
-                    <label for="ammount">Ammount</label>
+                    <label for="ammount">Amount</label>
                     <input type="number" className="form-control is-valid" name="ammount" defaultValue={ 0 }/>
                     <div class="valid-feedback">
                         Make sure you have set your appropriate account details before making request

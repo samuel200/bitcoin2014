@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import $ from 'jquery';
 import axios from 'axios';
-import domainName from '../../../domainName';
 
-export default function DepositForm({ authenticatedUser, setAuthenticatedUser }) {
+export default function DepositForm({ authenticatedUser, setAuthenticatedUser, modal }) {
     const { email } = authenticatedUser;
     const [ message, setMessage ] = useState("");
     const [ loading, setLoading ] = useState(false);
@@ -43,10 +42,10 @@ export default function DepositForm({ authenticatedUser, setAuthenticatedUser })
         setLoading(true);
         axios({
             method: 'POST',
-            url: `${domainName}/deposit_request/`,
+            url: `/deposit_request/`,
             data:  {
                 method: $("select#exampleFormControlSelect1").val(),
-                ammount: parseFloat($("input[name='ammount']").val())
+                ammount: parseFloat($(e.target).find("input[name='ammount']").val())
             },
             headers: {
                 Authorization: `Token ${ localStorage.getItem("authenticationToken") }`
@@ -58,6 +57,11 @@ export default function DepositForm({ authenticatedUser, setAuthenticatedUser })
             setAuthenticatedUser(data);
             localStorage.setItem('authenticatedUser', JSON.stringify(data))
             showMessage('success', 'Deposit Request Made Successfully')
+            const modalInstance = window.M.Modal.getInstance(modal.current);
+
+            setTimeout(()=>{
+                modalInstance.open();
+            }, 1000)
         })
         .catch( error=>{
             setLoading(false);
@@ -75,7 +79,7 @@ export default function DepositForm({ authenticatedUser, setAuthenticatedUser })
                     <input type="email" name="email" id="email" value={ email } placeholder="Your Email Address"/>
                 </div>
                 <div>
-                    <label for="ammount">Ammount</label>
+                    <label for="ammount">Amount</label>
                     <input type="number" className="form-control is-valid" name="ammount" required={ true }/>
                     <div class="valid-feedback">
                         Make sure you have set your appropriate account details before making request
