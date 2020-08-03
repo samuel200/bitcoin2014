@@ -9,7 +9,7 @@ from django.contrib.auth.models import User, UserManager
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
 from django.conf import settings
-import requests as req
+import requests
 
 from datetime import datetime
 
@@ -36,12 +36,15 @@ def message_us(request):
         try:
             send_mail(subject, message, settings.EMAIL_HOST_USER, ['samuelemeh200@gmail.com'], fail_silently=False)
         except Exception as e:
-            return Response({"error_message": "Error sending message"})    
-        
+            return Response({"error_message": "Error sending message"})
+
         return Response({"success_message": "message sent"})
 
 
 class LoginView(APIView):
+    authentication_classes = []
+    permission_classes = []
+
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
@@ -61,6 +64,9 @@ class LoginView(APIView):
             return Response(status=401)
 
 class RegistrationView(APIView):
+    authentication_classes = []
+    permission_classes = []
+
     def post(self, request):
         user_values = {
             "username": request.data.get('username'),
@@ -71,17 +77,17 @@ class RegistrationView(APIView):
         }
         user_serializer = UserSerializer(data=user_values)
         if user_serializer.is_valid():
-            user = User(username=user_values['username'], 
-                        email=user_values["email"], 
-                        first_name=user_values.get('first_name'), 
-                        last_name=user_values.get('last_name')) 
+            user = User(username=user_values['username'],
+                        email=user_values["email"],
+                        first_name=user_values.get('first_name'),
+                        last_name=user_values.get('last_name'))
             user.set_password(user_values["password"])
-        
+            user.save()
+
             user_details = UserDetails(country= request.data.get("country"),
                                         phone_number= request.data.get("phone_number"),
-                                        bitcoin_address= request.data.get("bitcoin_address"),
+                                        home_address= request.data.get("home_address"),
                                         user= user)
-            user.save()
             user_details.save()
             return Response({"success_message": "Registration successful."}, status=201)
 
@@ -89,6 +95,9 @@ class RegistrationView(APIView):
             return Response({"error_message": user_serializer.errors}, status=200)
 
 class ReferralRegistrationView(APIView):
+    authentication_classes = []
+    permission_classes = []
+
     def post(self, request, username):
         user_values = {
             "username": request.data.get('username'),
@@ -99,19 +108,19 @@ class ReferralRegistrationView(APIView):
         }
         user_serializer = UserSerializer(data=user_values)
         if user_serializer.is_valid():
-            user = User(username=user_values['username'], 
-                        email=user_values["email"], 
-                        first_name=user_values.get('first_name'), 
-                        last_name=user_values.get('last_name')) 
+            user = User(username=user_values['username'],
+                        email=user_values["email"],
+                        first_name=user_values.get('first_name'),
+                        last_name=user_values.get('last_name'))
             user.set_password(user_values["password"])
+            user.save()
 
             referral = User.objects.get(username=username)
             user_details = UserDetails(country= request.data.get("country"),
                                         phone_number= request.data.get("phone_number"),
-                                        bitcoin_address= request.data.get("bitcoin_address"),
+                                        home_address= request.data.get("home_address"),
                                         referree= referral,
                                         user= user)
-            user.save()
             user_details.save()
             return Response({"success_message": "Registration successful."}, status=201)
 
@@ -121,7 +130,7 @@ class ReferralRegistrationView(APIView):
 class UserView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-    
+
     def get(self, request):
         try:
             user = User.objects.get(id=request.user.id)
@@ -132,7 +141,7 @@ class UserView(APIView):
             withdrawals_serializer = WithdrawalSerializer(withdrawals, many=True)
             deposits = Deposit.objects.filter(user=user)
             deposits_serializer = DepositSerializer(deposits, many=True)
-                    
+
             transactions = {"deposits": deposits_serializer.data, "withdrawals": withdrawals_serializer.data}
 
             # return Response(serializers.data, status=200)
@@ -155,7 +164,7 @@ class WithdrawRequestView(APIView):
                 date=datetime.now(),
                 active=False
             )
-        
+
             user = User.objects.get(id=request.user.id)
             serializers = UserSerializer(user)
             user_details = UserDetails.objects.get(user=user)
@@ -188,7 +197,7 @@ class DepositRequestView(APIView):
                 date=datetime.now(),
                 active=False
             )
-            
+
             user = User.objects.get(id=request.user.id)
             serializers = UserSerializer(user)
             user_details = UserDetails.objects.get(user=user)
@@ -243,7 +252,7 @@ class ChangeAccountDetailsView(APIView):
 
             user_serializer = UserSerializer(user)
             serializer = UserDetailsSerializer(user_details, data=data, partial=True)
-            
+
             if serializer.is_valid():
                 serializer.save()
                 return Response({ **user_serializer.data, **serializer.data }, status=201)

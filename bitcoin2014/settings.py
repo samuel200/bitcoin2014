@@ -23,21 +23,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2npk(6h=u*&hfm70%n*kmv0ve43$^x%55z9w4ee@c#ucavv=c7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "samuelemeh200.pythonanywhere.com"]
+ALLOWED_HOSTS = ["globaltrades.pythonanywhere.com", "www.globaltrades.tech", "globaltrades.tech"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'mysite',
@@ -47,7 +47,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -119,17 +118,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-SEND_GRID_KEY = '38kxLGZvR3WCtNiUBI-O-A'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'samuelemeh200'
-EMAIL_HOST_PASSWORD = 'iuyaoyledj99'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'samuelemeh200@gmail.com'
-ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Email Sent From Website'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
+# Cors headers
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Static files (CSS, JavaScript, Images)
